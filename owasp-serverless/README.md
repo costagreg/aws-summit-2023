@@ -13,7 +13,7 @@ OWASP Top 10 Security Risks
 9. Security logging and minoring failures
 10. Serviside request forgery
 
-### Broken access control
+## Broken access control
 
 What are the risks:
 
@@ -35,7 +35,7 @@ Remediations:
 - GuardDuty for AWS Lambda
 - OSS tools: cloud tracker, police setry, repokid
 
-### Event Injection
+## Event Injection
 
 What are the risks: 
 
@@ -51,7 +51,7 @@ Remediations:
 
 Example: We have a lambda querying dynamodb. The lambda has FirstName and LastName as parameter. If we don’t validate them and the bad actor user FirstName: * and LastName: *  the lambda could return all items in the dynamodb table. (Similar to SQL Injection)
 
-### Security missconfiguration
+## Security missconfiguration
 
 What are the risks?
 
