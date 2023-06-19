@@ -20,3 +20,6 @@
 - Item with the same partition key are stored in the same partition. Order in the partition is determinate by the sort key.
 - In a monotonic partition key world, adapt capacity doesn’t work really well. You just use one partition. It’s fine for low traffic table but it doesn’t scale well. Remember each partition has limit of 3000 RCU and 1000 WCU
 - How can we identify heavy hitter primary keys? Use Cloudwatch contributor insights dynamodb
+
+##  Useful links
+- https://github.com/aws-samples/amazon-dynamodb-design-patterns
