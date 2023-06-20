@@ -1,7 +1,7 @@
 # Patterns and practises for building resilient applications
 
 - **“Always on” mindset.** When any system go down, it can cost money to the business.
-- What’s **esilience**? The ability for a workload (an app, a product etc) to adapt to failure.
+- What’s **resilience**? The ability for a workload (an app, a product etc) to adapt to failure.
 - How do you build a system that is always high available and able to recover? Mainly with continuous improvements
 - AWS makes sure their server are running all the time but you are responsible on the resilience in the cloud (choosing the right technologies to make your system resilient)
 - Operational Readiness Process: a checklist to make sure they use good practise when we delivery a feature.
