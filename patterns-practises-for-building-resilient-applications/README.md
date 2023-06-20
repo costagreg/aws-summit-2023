@@ -1,41 +1,43 @@
 # Patterns and practises for building resilient applications
 
-- “Always on” mindset. When any system go down, it can cost money to the business.
-- What’s resilience? The ability for a workload (an app, a product etc) to adapt to failure.
+- **“Always on” mindset.** When any system go down, it can cost money to the business.
+- What’s **esilience**? The ability for a workload (an app, a product etc) to adapt to failure.
 - How do you build a system that is always high available and able to recover? Mainly with continuous improvements
 - AWS makes sure their server are running all the time but you are responsible on the resilience in the cloud (choosing the right technologies to make your system resilient)
 - Operational Readiness Process: a checklist to make sure they use good practise when we delivery a feature.
 - Safe, continuous deployment: deploying small, one instance at the time or one region at the time. And if you find an issue, you shouldn’t be afraid to rollback and improve in the next release.
-- Continuous resilience workflow
+
+- **Continuous resilience workflow**
     - First part: You need to anticipate what can happen with a release. What can go wrong? Code reviews can help with that.
     - Second part: Monitoring. Set up traces, alarms etc.
     - Third part: responding to alarms
     - Fourth part: Can we learn from what happened so we can anticipate next time better? (Postmortems)
 - Different categories of failures: What happens if a database fail? Can you restore the data? What if a 3rd party api don’t respond?
 - AWS well architected framework: Build and deploy fast, lower and manage risks, make informed decisions, learn best practises.
-- Anticipating (mitigate issues in advance before they happen); how?:
+- **Anticipating** (mitigate issues in advance before they happen); how?:
     - code reviews
     - design patterns
     - Can use CodeGuru(Is the code written well? Or find the most expensive line of code CPU wise)
-- Recovery oriented patterns:
+- **Recovery oriented patterns**:
     - backoff and retry
     - circuit breaker
     - graceful degradation
     - throttling
     - load shedding
 - If we use an event-driven architecture and some of the services can experiences intermittent issues. Do we need a retry system? Can we use a backoff and retry system? So we don’t overload the server when it’s back up again.
-- Backoff and retry: We try the first time, if the call is not successful we add X seconds per each failed call.
-- What if we have synchronous calls? If one of the system in the line takes too much time the entire thread is blocked. This could block critical business area. We could use a circuit breaker system.
+- **Backoff and retry**: We try the first time, if the call is not successful we add X seconds per each failed call.
+- What if we have synchronous calls? If one of the system in the line takes too much time the entire thread is blocked. This could block critical business area. We could use a **circuit breaker system**.
 - Circuit breaker pattern: when we block a system that keep calling another system which is down. If there is a timeout in the failure, the circuit failure will identify it and it will stop the successful cals to the downstream service. The circuit breaker will check if we can retry. If the issues is fixed we can enable it again and all request will be forwarded downstream.
-- Cellular architecture: when you define domain area in your architecture. Basically group of services to contain blast radius.
-- Immutable infrastructure: no updates to the infrastructure will happen in place. If we update a new setting in one of our EC2 instances, we don’t just update that instance but we spin up a new infrastructure infrastructure and use canary deployment.
-- When make changes in a system we need to think about the blast radius.
-- Fractional deployment: blue/green deployment or canary deployment(In Amazon, every release is first released to a small group of users. Maybe first 10%. You wait for some time and if all good you extend your changes to other users)
-- Disaster recovery strategy: from low cost to high cost. You can start small with just backups or spend more and use a multiple regions for your architecture.
-- Service in AWS for disaster recovery: AWS Resilience HUB - you can specify your requirements and it will give you some recommendations to make your system more resilient.
-- RPO:  Recovery Point Objective is the maximum acceptable amount of data loss after an unplanned data-loss incident, expressed as an amount of time.
-- RTO:  Recovery Time Objective is ****the maximum acceptable amount of time for restoring a network or application and regaining access to data after an unplanned disruption.
-- It’s more important to recovery from failure than try to reduce failures.
+- **Cellular architecture**: when you define domain area in your architecture. Basically group of services to contain blast radius.
+- **Immutable infrastructure**: no updates to the infrastructure will happen in place. If we update a new setting in one of our EC2 instances, we don’t just update that instance but we spin up a new infrastructure infrastructure and use canary deployment.
+- When make changes in a system we need to think about the **blast radius**.
+- **Fractional deployment**: blue/green deployment or canary deployment(In Amazon, every release is first released to a small group of users. Maybe first 10%. You wait for some time and if all good you extend your changes to other users)
+- **Disaster recovery strategy**: from low cost to high cost. You can start small with just backups or spend more and use a multiple regions for your architecture.
+- Service in AWS for disaster recovery: **AWS Resilience HUB** - you can specify your requirements and it will give you some recommendations to make your system more resilient.
+- RPO:  **Recovery Point Objective** is the maximum acceptable amount of data loss after an unplanned data-loss incident, expressed as an amount of time.
+- RTO:  **Recovery Time Objective is** is the maximum acceptable amount of time for restoring a network or application and regaining access to data after an unplanned disruption.
+- **It’s more important to recovery from failure than try to reduce failures.**
 - We can automate some of the rollback steps: We could create a step function that can detect the issue and revert everything.
-- How can we learn things we don’t know about the system? We could stress the system and improve it. This will increase confidence of our system.
+- How can we learn things we don’t know about the system? We could **stress the system and improve it**. This will increase confidence of our system.
 - Game days in Amazon: it’s a way for small team to share knowledge with other teams about what they have learned in a incident.
+- https://dev.to/gunnargrosch/patterns-and-practices-for-building-resilient-applications-37gc
